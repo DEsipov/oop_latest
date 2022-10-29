@@ -23,7 +23,6 @@ class Training:
     LEN_STEP: float = 0.65
     M_IN_KM: int = 1000
     MIN_IN_H: int = 60
-    HOURS_TO_MNTS: int = 60
 
     def __init__(self,
                  action: int,
@@ -60,6 +59,13 @@ class Running(Training):
     LEN_STEP: float = 0.65
     CALORIES_MEAN_SPEED_MULTIPLIER: int = 18
     CALORIES_MEAN_SPEED_SHIFT: float = 1.79
+    HOURS_TO_MNTS: int = 60
+
+    def __init__(self,
+                 action: int,
+                 duration: float,
+                 weight: float) -> None:
+        super().__init__(action, duration, weight)
 
     def get_spent_calories(self) -> float:
         return ((self.CALORIES_MEAN_SPEED_MULTIPLIER * self.get_mean_speed()
@@ -71,6 +77,7 @@ class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
     LEN_STEP: float = 0.65
     KMH_IN_MSEC: float = 0.278
+    HOURS_TO_MNTS: int = 60
     CM_IN_M: int = 100
     CALORIES_WEIGHT_MULTIPLIER: float = 0.035
     CALORIES_SPEED_HEIGHT_MULTIPLIER: float = 0.029
